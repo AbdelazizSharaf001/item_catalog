@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="google-signin-client_id" content="1091537102839-9ncsfn6fsgvbi24gl7i06n8dk5t2oqg7.apps.googleusercontent.com">
+
+	<title>Item Catalog | {{ page[-1] }}</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-light bg-dark text-white">
+			<h2>Item Catalog</h2>
+			<a href="/login"><button class="btn btn-outline-primary my-2 my-sm-0" id="login">Login</button></a>
+		</nav>
+	</header>
+	<main class="container">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/">Home</a></li>
+			{% for i in range(page|length) %}
+				<li class="breadcrumb-item active" aria-current="page">{{ page[i] }}</li>
+			{% endfor %}
+		</ol>
+		<div class="row">
+			<div class="col-lg-2">
+				<h4>Catagory <sub><a href="/Catagories/new">New</a></sub></h4>
+				{% for cat in cats %}
+					<a class="list-group-item list-group-item-action bg-dark text-white" href="/Catagories/{{ cat.id }}">{{ cat.name }}</a>
+				{% endfor %}
+			</div>
+			<div class="col-sm">

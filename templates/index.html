@@ -1,0 +1,25 @@
+<h4>
+{% if page|length > 1 %}
+	<a href="/Catagories/del/{{ items[0].catagory_id }}"><button class="btn btn-outline-primary my-2 my-sm-0 pull-right">&times;</button></a>
+	<a href="/Catagories/edit/{{ items[0].catagory_id }}"><button class="btn btn-outline-primary my-2 my-sm-0 pull-right">&#9998;</button></a>
+	<a href="/Catagories/new/{{ items[0].catagory_id }}"><button class="btn btn-outline-primary my-2 my-sm-0 pull-right">&#10010;</button></a>
+	{{ page[-1] }}
+{% else %}
+	Last added
+{% endif %}
+</h4>
+{% if page|length > 1 %}
+	{% for i in items|reverse %}
+		<div class="list-group-item list-group-item-action">
+			<a href="/Catagories/del/{{ i.catagory_id }}/{{ i.id }}"><button class="btn btn-outline-primary my-2 my-sm-0">&times;</button></a>
+			<a href="/Catagories/edit/{{ i.catagory_id }}/{{ i.id }}"><button class="btn btn-outline-primary my-2 my-sm-0">&#9998;</button></a>
+			<a href="/Catagories/{{ i.catagory_id }}/{{ i.id }}">{{ i.name }}</a>
+		</div>
+	{% endfor %}
+{% else %}
+	{% for i in items[-5:]|reverse %}
+		<div class="list-group-item list-group-item-action">
+			<a href="/Catagories/{{ i.catagory_id }}/{{ i.id }}">{{ i.name }}</a>
+		</div>
+	{% endfor %}
+{% endif %}
